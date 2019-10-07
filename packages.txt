@@ -1,0 +1,6 @@
+net-tools
+ethtool
+tcpdump
+pciutils
+# wget
+rsync
