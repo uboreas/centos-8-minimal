@@ -5,15 +5,15 @@ A pure bash script to create **minimal installation ISO** image together with **
 This will create an ISO image in the order of workflow shown below:
 
 1. Rerefence ISO will be mounted (to "mtemp/" in working folder).
-- An ISO template will be created (to "image/" in working folder).
+2. An ISO template will be created (to "image/" in working folder).
     - Essentials (isolinux, EFI, boot images etc) will be copied from references ISO as it is.
     - Template files will be re-constructed and (re)placed on ISO template.
-- Dependencies for "core" and "additional" packages will be scanned and a resulting package list will be created.
+3. Dependencies for "core" and "additional" packages will be scanned and a resulting package list will be created.
     - Required packages (RPM files) will be downloaded in this phase if it is not downloaded yet and will be added into ISO template.
     - A copy of newly downloaded RPM file will be added into "rpms/" in working folder for later use to avoid re-downloading.
-- A repository (and metadata information) will be created under ISO template to use packages added.
-- ISO image will be created using ISO template that prepared in above steps.
-- Reference ISO will be unmounted.
+4. A repository (and metadata information) will be created under ISO template to use packages added.
+5. ISO image will be created using ISO template that prepared in above steps.
+6. Reference ISO will be unmounted.
 
 Hence, there are two main parts of this project:
 
@@ -169,16 +169,15 @@ Again, dowloaded RPM files will be placed into "rpms/" folder for later use (and
    
    You can change such file if you want, but please keep a single empty line inside the "packagelist" of group "core" to merge additional packages defined in package.txt like;
 
-   ```
-   <group>
-      <id>core</id>
-      <name>Core</name>
-      <packagelist>
-         <packagereq type="optional">tboot</packagereq>
---- put single empty line here. ---
-      </packagelist>
-   </group>
-   ```
+
+        <group>
+           <id>core</id>
+           <name>Core</name>
+           <packagelist>
+              <packagereq type="optional">tboot</packagereq>
+        --- put single empty line here. ---
+           </packagelist>
+        </group>
    
 - Other Template files
 
