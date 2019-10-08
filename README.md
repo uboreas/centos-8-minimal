@@ -84,7 +84,7 @@ You can run particular workflow-step manually when needed. For example:
     
 There are also some functions which will not do any effect on working data. 
 
-For examople you can get download links for given package(s):
+For example you can get download links for given package(s):
 
      # ./bootstrap.sh step rpmurl httpd php 
  
@@ -157,15 +157,15 @@ Again, dowloaded RPM files will be placed into "rpms/" folder for later use (and
    
         # CMETH="deep" ./bootstrap.sh debug php
     
-   Above command will display each package checks recursively and will display a dependency tree when it finished resolving.
+   Above command will display each package checks recursively and will display a dependency tree when it finish resolving.
 
 ### Footnotes
 
 - Group file template
 
-   The list of "core" packages which defined in "templ\_comps.xml" template file is obtained from the "BaseOS" group of official CentOS 8 DVD-ISO.
+   The list of "core" packages which defined in "templ\_comps.xml" template file is obtained from the "BaseOS" group on official CentOS 8 DVD-ISO.
    
-   First, tt's content will be used to collect required installation packages. Then, the list of packages specified in "package.txt" will be merged into it and will be used as group file to include in metadata of the resulting ISO.
+   First, its content will be used to collect required installation packages. Then, the list of packages specified in "package.txt" will be merged into it and will be used as group file to include in metadata of the resulting ISO.
    
    You can change such file if you want, but please keep a single empty line inside the "packagelist" of group "core" to merge additional packages defined in package.txt like;
 
