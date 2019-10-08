@@ -6,7 +6,7 @@ This will create an ISO image in the order of workflow shown below:
 
 1. Rerefence ISO will be mounted (to "mtemp/" in working folder).
 2. An ISO template will be created (to "image/" in working folder).
-    - Essentials (isolinux, EFI, boot images etc) will be copied from references ISO as it is.
+    - Essentials (isolinux, EFI, boot images etc) will be copied from reference ISO as it is.
     - Template files will be re-constructed and (re)placed on ISO template.
 3. Dependencies for "core" and "additional" packages will be scanned and a resulting package list will be created.
     - Required packages (RPM files) will be downloaded in this phase if it is not downloaded yet and will be added into ISO template.
@@ -116,7 +116,7 @@ If you want to add custom package(s) into the resulting ISO and you want it to b
 
 (Empty lines and lines starting with "#" will be ignored.)
 
-If you want to download package(s) together with it's full dependencies you can use "debug" main switch. This switch is also useful to track processing of given package(s) if something went wrong.
+If you want to download package(s) together with it's full dependencies you can use "debug" main switch. This switch is also useful to track processing of given package(s) when something went wrong.
 
     # ./bootstrap.sh debug php
 
