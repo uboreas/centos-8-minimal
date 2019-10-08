@@ -98,14 +98,16 @@ function cmisounmount() {
 function cmisomount() {
    if [ ! -e "${iso}" ]; then
       echo
-      echo " ! CentoOS 8 (1905) NetInstall x86_64 ISO not found."
+      echo " ! Reference ISO (${iso}) not found."
       echo
-      echo "   You can download it from following resource;"
-      echo "   http://mirror.centos.org/centos/8.0.1905/isos/x86_64/"
-      echo
-      echo "   Once you downloaded, place file here with its original name:"
-      echo "   ${iso}"
-      echo
+      if [ "${iso}" == "CentOS-8-x86_64-1905-boot.iso" ]; then
+         echo "   You can download it from following resource;"
+         echo "   http://mirror.centos.org/centos/8.0.1905/isos/x86_64/"
+         echo
+         echo "   If you want to use different one, please specify it like below;"
+         echo "   CMISO='/path/to/file.iso' ./bootstrap.sh .."
+         echo
+      fi
       exit 1
    fi
    cmisounmount
@@ -115,6 +117,13 @@ function cmisomount() {
       mount -o loop "${iso}" "${md}" 2>&1 | cmpipe
       cmcheck
       echo "   ${md} mounted"
+      if [ "$(cat "${md}/isolinux/isolinux.cfg" | grep "CentOS Linux 8")" == "" ]; then
+         cmisounmount
+         echo
+         echo " ! Reference ISO should be one of the CentOS 8 distribution."
+         echo
+         exit
+      fi
    fi
 }
 
@@ -189,7 +198,7 @@ function resolvefast() {
 
 function resolvedeep() {
    # input arguments
-   # package seperator tempfile verbose
+   # package [package ..]
    s="${CMSEP}-"
    tf="${CMTEMP}"
    vb="${CMVERBOSE}"

@@ -1,6 +1,6 @@
 net-tools
 ethtool
-tcpdump
-pciutils
+# tcpdump
+# pciutils
 # wget
-rsync
+# rsync
