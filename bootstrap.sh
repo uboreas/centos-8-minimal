@@ -545,6 +545,9 @@ function cmcreateiso() {
       -V 'CentOS-8-BaseOS-x86_64' \
       -boot-load-size 4 \
       -boot-info-table \
+      -eltorito-alt-boot \
+      -e images/efiboot.img \
+      -no-emul-boot \
       -R -J -v -T . 2>&1 | cmdot
       cmcheck
    if [ -e "/usr/bin/isohybrid" ]; then
