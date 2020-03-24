@@ -12,10 +12,11 @@
 # Default values
 #
 # official ISO to use
-iso="CentOS-8-x86_64-1905-boot.iso"
+iso="CentOS-8.1.1911-x86_64-boot.iso"
 #
 # resulting ISO file name
-out="centos-8-minimal.iso"
+oname="CentOS-8-1-1911-x86_64-minimal"
+out="CentOS-8.1-1911-x86_64-minimal.iso"
 #
 # dependency resolving method
 # deep: check dependency of every package one by one
@@ -100,9 +101,9 @@ function cmisomount() {
       echo
       echo " ! Reference ISO (${iso}) not found."
       echo
-      if [ "${iso}" == "CentOS-8-x86_64-1905-boot.iso" ]; then
+      if [ "${iso}" == "CentOS-8.1.1911-x86_64-boot.iso" ]; then
          echo "   You can download it from following resource;"
-         echo "   http://mirror.centos.org/centos/8.0.1905/isos/x86_64/"
+         echo "   http://mirror.centos.org/centos/8.1.1911/isos/x86_64/"
          echo
          echo "   If you want to use different one, please specify it like below;"
          echo "   CMISO='/path/to/file.iso' ./bootstrap.sh .."
@@ -154,6 +155,11 @@ function cmcreatetemplate() {
    cp "templ_media.repo" "${dp}/media.repo"
    echo -n "."
    cp -r "${md}/isolinux" "${dp}/"
+   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${oname}/g" "${dp}/isolinux/isolinux.cfg"
+   sed -i "s/\\(-l '\\)[a-Z0-9\\_\\-]\\+\\('\\)/\\1${oname}\\2/g" "${dp}/EFI/BOOT/BOOT.conf"
+   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${oname}/g" "${dp}/EFI/BOOT/BOOT.conf"
+   sed -i "s/\\(-l '\\)[a-Z0-9\\_\\-]\\+\\('\\)/\\1${oname}\\2/g" "${dp}/EFI/BOOT/grub.cfg"
+   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${oname}/g" "${dp}/EFI/BOOT/grub.cfg"
    cmcheck
    echo -n "."
    cp -r "${md}/images" "${dp}/"
@@ -542,7 +548,7 @@ function cmcreateiso() {
       -b isolinux/isolinux.bin \
       -c isolinux/boot.cat \
       -no-emul-boot \
-      -V 'CentOS-8-BaseOS-x86_64' \
+      -V "${oname}" \
       -boot-load-size 4 \
       -boot-info-table \
       -eltorito-alt-boot \
@@ -612,7 +618,7 @@ function cmjobquick() {
 if [ ! -e /etc/centos-release ]; then
    cmnotcentos
 fi
-if [ "$(cat /etc/centos-release | grep "CentOS Linux release 8.0")" == "" ]; then
+if [ "$(cat /etc/centos-release | grep "CentOS Linux release 8.1")" == "" ]; then
    cmnotcentos
 fi
 if [ ! -e "/usr/bin/repoquery" -o ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/yumdownloader" -o ! -e "/usr/bin/curl" -o ! -e "/usr/bin/mkisofs" ]; then

@@ -13,7 +13,7 @@ name = CentOS Linux 8
 packagedir = BaseOS/Packages
 platforms = x86_64,xen
 repository = BaseOS
-timestamp = 1565905910
+timestamp = 1578087691
 variant = BaseOS
 variants = BaseOS
 version = 8
@@ -45,7 +45,7 @@ mainimage = images/install.img
 
 [tree]
 arch = x86_64
-build_timestamp = 1565905910
+build_timestamp = 1578087691
 platforms = x86_64,xen
 variants = BaseOS
 
