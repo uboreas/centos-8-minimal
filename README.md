@@ -32,8 +32,8 @@ Hence, there are two main parts of this project:
 
 - One of the official ISO image of CentOS 8 distribution. Place it to same folder with the script.
 
-        CentOS-8-x86_64-XXXX-boot.iso
-        CentOS-8-x86_64-XXXX-dvd1.iso
+        CentOS-8.X.XXXX-x86_64-boot.iso
+        CentOS-8.X.XXXX-x86_64-dvd1.iso
 
 ### Synopsis
 
@@ -137,9 +137,9 @@ Again, dowloaded RPM files will be placed into "rpms/" folder for later use (and
 
    You can specify the reference ISO to be used with this variable like;
    
-        # CMISO="CentOS-8-x86_64-1905-boot.iso" ./bootstrap.sh run force
+        # CMISO="CentOS-8.1.1911-x86_64-boot.iso" ./bootstrap.sh run force
 
-   Script will use "CentOS-8-x86\_64-1905-boot.iso" by default if such variable is not given.
+   Script will use "CentOS-8.1.1911-x86\_64-boot.iso" by default if such variable is not given.
 - **CMOUT**="resulting iso filename"
 
    You can specify the name of resulting ISO file. For example;

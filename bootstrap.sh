@@ -5,8 +5,8 @@
 # Evironment variables
 #
 #    CMVERBOSE  : increase verbosity (set any value)
-#    CMISO      : official ISO to use (CentOS-8-x86_64-1905-boot.iso)
-#    CMOUT      : resultig ISO file name (centos-8-minimal.iso)
+#    CMISO      : official ISO to use (i.e. CentOS-8.1.1911-x86_64-boot.iso)
+#    CMOUT      : resultig ISO file name (i.e. CentOS-8.1.1911-x86_64-minimal.iso)
 #    CMETH      : dependency resolving method to use (deep or fast)
 #
 # Default values
@@ -15,8 +15,8 @@
 iso="CentOS-8.1.1911-x86_64-boot.iso"
 #
 # resulting ISO file name
-oname="CentOS-8-1-1911-x86_64-minimal"
-out="CentOS-8.1-1911-x86_64-minimal.iso"
+out="$(echo "${iso}" | awk -F"x86_64" {'print $1"x86_64"'})-minimal.iso"
+lbl="$(echo "${iso}" | awk -F"x86_64" {'print $1"x86_64"'} | sed 's/\./\-/g')"
 #
 # dependency resolving method
 # deep: check dependency of every package one by one
@@ -101,14 +101,14 @@ function cmisomount() {
       echo
       echo " ! Reference ISO (${iso}) not found."
       echo
-      if [ "${iso}" == "CentOS-8.1.1911-x86_64-boot.iso" ]; then
-         echo "   You can download it from following resource;"
-         echo "   http://mirror.centos.org/centos/8.1.1911/isos/x86_64/"
-         echo
-         echo "   If you want to use different one, please specify it like below;"
-         echo "   CMISO='/path/to/file.iso' ./bootstrap.sh .."
-         echo
-      fi
+      echo "   You can download CentOS 8 from following resource;"
+      echo "   http://isoredirect.centos.org/centos/8/isos/x86_64/"
+      echo
+      echo "   If you want to use different minor release, please"
+      echo "   specify it like below;"
+      echo
+      echo "   CMISO='/path/to/file.iso' ./bootstrap.sh .."
+      echo
       exit 1
    fi
    cmisounmount
@@ -126,12 +126,22 @@ function cmisomount() {
          exit
       fi
    fi
+   if [ "${CMISO}" != "" ]; then
+      ver="$(cat "${md}/isolinux/isolinux.cfg" | grep "LABEL=CentOS" | head -1 | awk -F"LABEL=CentOS-" {'print $2'} | awk -F"-x86_64" {'print $1'} | sed 's/\-/\./g')"
+      if [ "${ver}" == "8.BaseOS" ]; then
+         ver="8.0.1905"
+      elif [ "${ver}" == "Stream.8" ]; then
+         ver="8.0.20191219"
+      fi
+      out="CentOS-${ver}-x86_64-minimal.iso"
+      lbl="CentOS-$(echo "${ver}" |sed 's/\./\-/g')-x86_64"
+   fi
 }
 
 function cmclean() {
    cmisounmount
    rm -rf "${dp}"
-   rm -f target_comps.xml "${out}" .[cpmrdtf]*
+   rm -f target_comps.xml "${out}" .[cpmrdtfu]*
 }
 
 function cmcreatetemplate() {
@@ -151,15 +161,16 @@ function cmcreatetemplate() {
    cp -r "${md}/EFI" "${dp}/"
    cmcheck
    echo -n "."
+   
    cp "templ_discinfo" "${dp}/.discinfo"
    cp "templ_media.repo" "${dp}/media.repo"
    echo -n "."
    cp -r "${md}/isolinux" "${dp}/"
-   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${oname}/g" "${dp}/isolinux/isolinux.cfg"
-   sed -i "s/\\(-l '\\)[a-Z0-9\\_\\-]\\+\\('\\)/\\1${oname}\\2/g" "${dp}/EFI/BOOT/BOOT.conf"
-   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${oname}/g" "${dp}/EFI/BOOT/BOOT.conf"
-   sed -i "s/\\(-l '\\)[a-Z0-9\\_\\-]\\+\\('\\)/\\1${oname}\\2/g" "${dp}/EFI/BOOT/grub.cfg"
-   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${oname}/g" "${dp}/EFI/BOOT/grub.cfg"
+   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${lbl}/g" "${dp}/isolinux/isolinux.cfg"
+   sed -i "s/\\(-l '\\)[a-Z0-9\\_\\-]\\+\\('\\)/\\1${lbl}\\2/g" "${dp}/EFI/BOOT/BOOT.conf"
+   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${lbl}/g" "${dp}/EFI/BOOT/BOOT.conf"
+   sed -i "s/\\(-l '\\)[a-Z0-9\\_\\-]\\+\\('\\)/\\1${lbl}\\2/g" "${dp}/EFI/BOOT/grub.cfg"
+   sed -i "s/\\(inst.stage2=hd:LABEL=\\)[a-Z0-9\\_\\-]\\+/\\1${lbl}/g" "${dp}/EFI/BOOT/grub.cfg"
    cmcheck
    echo -n "."
    cp -r "${md}/images" "${dp}/"
@@ -183,6 +194,18 @@ function cmcreatetemplate() {
          echo "${line}" >> "${dp}/.treeinfo"
       fi
    done < "templ_treeinfo"
+   if [ -e "${md}/.treeinfo" ]; then
+      ts="$(cat ${md}/.treeinfo | grep "timestamp = " | head -1 | awk -F"= " {'print $2'} | tr -d "\n\r")"
+      if [ "${ts}" != "" ]; then
+         sed -i "s/\\(timestamp = \\)[0-9]\\+/\\1${ts}/g" "${dp}/.treeinfo"
+      fi
+   fi
+   if [ -e "${md}/.discinfo" ]; then
+      ts="$(head -1 ${md}/.discinfo | tr -d "\n\r")"
+      if [ "${ts}" != "" ]; then
+         sed -i "s/[0-9]\\+\.[0-9]\\+/${ts}/g" "${dp}/.discinfo"
+      fi
+   fi
    echo " done"
 }
 
@@ -386,9 +409,9 @@ function cmrpmurl() {
       echo 
       exit 1
    fi
-   yumdownloader --urls "${@}" 2>/dev/null | \
+   yumdownloader --urls "${@}" | \
       grep "^http" | \
-      sort | uniq
+      sort | uniq > "${pw}/.urls"
 }
 
 function cmrpmname() {
@@ -414,7 +437,8 @@ function cmcollectrpm() {
       echo 
       exit 1
    fi
-   dl="$(cmrpmurl "${@}")"
+   cmrpmurl "${@}"
+   dl="$(cat "${pw}/.urls")"
    rr="$(echo "${dl}" | awk -F"/" {'print $NF'} | sed 's/\.i686/\.x86_64/g' | sort | uniq)"
    if [ "${rr}" != "" ]; then
       echo "${rr}" | while read r; do
@@ -475,8 +499,9 @@ function cmcollectrpm() {
       done
    else
       echo "${@}" >> .rslv
-      if [ "${@}" != "" ]; then
-         echo " unresolved: ${@}"
+      args="${@}"
+      if [ "${args}" != "" ]; then
+         echo " unresolved: ${args}"
       else
          echo -n "!"
       fi
@@ -548,7 +573,7 @@ function cmcreateiso() {
       -b isolinux/isolinux.bin \
       -c isolinux/boot.cat \
       -no-emul-boot \
-      -V "${oname}" \
+      -V "${lbl}" \
       -boot-load-size 4 \
       -boot-info-table \
       -eltorito-alt-boot \
@@ -610,15 +635,19 @@ function cmjobfull() {
 }
 
 function cmjobquick() {
+   if [ "${CMISO}" != "" ]; then
+      cmisomount
+   fi
    cmcreatetemplate
    cmcreaterepo
    cmcreateiso
+   cmisounmount
 }
 
 if [ ! -e /etc/centos-release ]; then
    cmnotcentos
 fi
-if [ "$(cat /etc/centos-release | grep "CentOS Linux release 8.1")" == "" ]; then
+if [ "$(cat /etc/centos-release | grep "CentOS Linux release 8")" == "" ]; then
    cmnotcentos
 fi
 if [ ! -e "/usr/bin/repoquery" -o ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/yumdownloader" -o ! -e "/usr/bin/curl" -o ! -e "/usr/bin/mkisofs" ]; then
@@ -638,6 +667,9 @@ if [ "${CMOUT}" != "" ]; then
 fi
 if [ "${CMETH}" != "" ]; then
    met="${CMETH}"
+fi
+if [ ! -e "packages.txt" ]; then
+   touch "packages.txt"
 fi
 
 if [ "${1}" == "run" ]; then
