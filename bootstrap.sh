@@ -127,16 +127,6 @@ function cmisomount() {
          exit
       fi
    fi
-   lbl="$(cat "${md}/isolinux/isolinux.cfg" | grep "LABEL=" | awk -F"LABEL=" {'print $2'} | awk {'print $1'} | grep -v "^$" | head -1 | tr -d "\n\r")"
-   if [ "${CMOUT}" == "" ]; then
-      ver="$(cat "${md}/isolinux/isolinux.cfg" | grep "LABEL=CentOS" | head -1 | awk -F"LABEL=CentOS-" {'print $2'} | awk -F"-x86_64" {'print $1'} | sed 's/\-/\./g')"
-      if [ "${ver}" == "8.BaseOS" ]; then
-         ver="8.0.1905"
-      elif [ "${ver}" == "Stream.8" ]; then
-         ver="8.0.20191219"
-      fi
-      out="CentOS-${ver}-x86_64-minimal.iso"
-   fi
 }
 
 function cmclean() {
@@ -560,6 +550,16 @@ function cmcreateiso() {
       echo "   ${0} step createrepo"
       echo
       exit 1
+   fi
+   lbl="$(cat "${dp}/isolinux/isolinux.cfg" | grep "LABEL=" | awk -F"LABEL=" {'print $2'} | awk {'print $1'} | grep -v "^$" | head -1 | tr -d "\n\r")"
+   if [ "${CMOUT}" == "" ]; then
+      ver="$(cat "${dp}/isolinux/isolinux.cfg" | grep "LABEL=CentOS" | head -1 | awk -F"LABEL=CentOS-" {'print $2'} | awk -F"-x86_64" {'print $1'} | sed 's/\-/\./g')"
+      if [ "${ver}" == "8.BaseOS" ]; then
+         ver="8.0.1905"
+      elif [ "${ver}" == "Stream.8" ]; then
+         ver="8.0.20191219"
+      fi
+      out="CentOS-${ver}-x86_64-minimal.iso"
    fi
    echo " ~ Creating ISO image"
    cd "${dp}"
