@@ -436,7 +436,7 @@ function cmcollectrpm() {
    fi
    cmrpmurl "${@}"
    dl="$(cat "${pw}/.urls")"
-   rr="$(echo "${dl}" | awk -F"/" {'print $NF'} | sed 's/\.i686/\.x86_64/g' | sort | uniq)"
+   rr="$(echo "${dl}" | awk -F"/" {'print $NF'} | sort | uniq)"
    if [ "${rr}" != "" ]; then
       mkdir -p rpms
       echo "${rr}" | while read r; do
