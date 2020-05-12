@@ -28,7 +28,7 @@ Hence, there are two main parts of this project:
     
 - Some additional packages needs to be installed in order to run the script. Those can be installed by using the command below:
 
-        yum -y install yum-utils createrepo syslinux genisoimage isomd5sum bzip2 curl
+        yum -y install yum-utils createrepo syslinux genisoimage isomd5sum bzip2 curl file
 
 - One of the official ISO image of CentOS 8 distribution. Place it to same folder with the script.
 
