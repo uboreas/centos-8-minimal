@@ -581,7 +581,7 @@ function cmcreateiso() {
       cmcheck
    if [ -e "/usr/bin/isohybrid" ]; then
       echo " ~ ISO hybrid"
-      isohybrid "${pw}/${out}" | cmdot
+      isohybrid --uefi "${pw}/${out}" | cmdot
       cmcheck
    fi
    if [ -e "/usr/bin/implantisomd5" ]; then
