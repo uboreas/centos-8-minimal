@@ -653,7 +653,7 @@ if [ ! -e "/usr/bin/repoquery" -o ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/y
    echo " ! Some additional packages needs to be installed."
    echo "   Please run following command to have them all:"
    echo
-   echo "   yum -y install yum-utils createrepo syslinux genisoimage isomd5sum bzip2 curl"
+   echo "   yum -y install yum-utils createrepo syslinux genisoimage isomd5sum bzip2 curl file"
    echo
    exit 1
 fi
