@@ -20,6 +20,14 @@ Hence, there are two main parts of this project:
 - Script itself and template files as essentials (**bootstrap.sh** and templ\_\* files explained in Footnotes section)
 - An additional package list to install during OS installation (**packages.txt**).
 
+### Running in Docker
+
+- Requires Docker & Internet Connection
+
+  You can build the Dockerfile here and run it with a sample command.  Note that to retrieve your ISO after the container has finished creation, you must specify a mount point at `/mnt` during the container's execution in order to retrieve the file.  Additionally, privileged execution is required by the container to mount the ISO during the recreation process.
+
+  Example: `mkdir ./iso-out && docker build -t centos-8-minimal && docker run --privileged -v ./iso-out:/mnt centos-8-minimal` 
+
 ### Requirements
 
 - CentOS 8
