@@ -313,7 +313,7 @@ function cmrpmdownload() {
       exit 1
    fi
    mkdir -p rpms
-   yumdownloader --urls "${@}" 2>/dev/null | \
+   yumdownloader --urlprotocol http --urls "${@}" 2>/dev/null | \
       grep "^http" | \
       sort | uniq | \
    while read u; do
@@ -351,7 +351,7 @@ function rpmdownload() {
    fi
    ul="${CMURL}"
    if [ "${ul}" == "" ]; then
-      ul="$(yumdownloader --urls "${@}" 2>/dev/null | \
+      ul="$(yumdownloader --urlprotocol http --urls "${@}" 2>/dev/null | \
             grep "^http" | \
             sort | uniq)"
    fi
@@ -396,7 +396,7 @@ function cmrpmurl() {
       echo 
       exit 1
    fi
-   yumdownloader --urls "${@}" | \
+   yumdownloader --urlprotocol http --urls "${@}" | \
       grep "^http" | \
       sort | uniq > "${pw}/.urls"
 }
