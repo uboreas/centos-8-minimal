@@ -440,7 +440,8 @@ function cmcollectrpm() {
                echo -n "."
             fi
          else
-            pk="$(echo "${r}" | awk -F".el8" {'print $1'} | sed 's/\-[0-9\.\-]\+$//g')"
+            pk="$(echo "${r}" | awk -F".el8" {'print $1'} \
+               | sed -e 's/~.*$//' -e 's/\-[0-9\.\-]\+$//g')"
             fu="$(echo "${dl}" | grep "/${r}$")"
             if [ "${fu}" == "" ]; then
                ir="$(echo "${r}" | sed 's/\.x86_64/\.i686/g')"
