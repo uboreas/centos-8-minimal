@@ -313,7 +313,7 @@ function cmrpmdownload() {
       exit 1
    fi
    mkdir -p rpms
-   yumdownloader --urlprotocol http --urls "${@}" 2>/dev/null | \
+   dnf -q download --urlprotocol http --urls "${@}" 2>/dev/null | \
       grep "^http" | \
       sort | uniq | \
    while read u; do
@@ -351,7 +351,7 @@ function rpmdownload() {
    fi
    ul="${CMURL}"
    if [ "${ul}" == "" ]; then
-      ul="$(yumdownloader --urlprotocol http --urls "${@}" 2>/dev/null | \
+      ul="$(dnf -q download --urlprotocol http --urls "${@}" 2>/dev/null | \
             grep "^http" | \
             sort | uniq)"
    fi
@@ -396,7 +396,7 @@ function cmrpmurl() {
       echo 
       exit 1
    fi
-   yumdownloader --urlprotocol http --urls "${@}" | \
+   dnf -q download --urlprotocol http --urls "${@}" | \
       grep "^http" | \
       sort | uniq > "${pw}/.urls"
 }
@@ -648,7 +648,7 @@ fi
 if [ "$(cat /etc/centos-release | grep "CentOS Linux release 8")" == "" ]; then
    cmnotcentos
 fi
-if [ ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/yumdownloader" -o ! -e "/usr/bin/curl" -o ! -e "/usr/bin/mkisofs" ]; then
+if [ ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/curl" -o ! -e "/usr/bin/mkisofs" ]; then
    echo
    echo " ! Some additional packages needs to be installed."
    echo "   Please run following command to have them all:"
