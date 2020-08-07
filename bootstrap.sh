@@ -314,7 +314,6 @@ function cmrpmdownload() {
    fi
    mkdir -p rpms
    dnf -q download --urlprotocol http --urls "${@}" 2>/dev/null | \
-      grep "^http" | \
       sort | uniq | \
    while read u; do
       if [ "${u}" != "" ]; then
@@ -352,7 +351,6 @@ function rpmdownload() {
    ul="${CMURL}"
    if [ "${ul}" == "" ]; then
       ul="$(dnf -q download --urlprotocol http --urls "${@}" 2>/dev/null | \
-            grep "^http" | \
             sort | uniq)"
    fi
    mkdir -p rpms
@@ -397,7 +395,6 @@ function cmrpmurl() {
       exit 1
    fi
    dnf -q download --urlprotocol http --urls "${@}" | \
-      grep "^http" | \
       sort | uniq > "${pw}/.urls"
 }
 
