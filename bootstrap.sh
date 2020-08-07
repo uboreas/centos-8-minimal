@@ -653,7 +653,7 @@ if [ ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/curl" -o ! -e "/usr/bin/mkisof
    echo " ! Some additional packages needs to be installed."
    echo "   Please run following command to have them all:"
    echo
-   echo "   yum -y install createrepo syslinux genisoimage isomd5sum bzip2 curl file"
+   echo "   dnf -y install createrepo syslinux genisoimage isomd5sum bzip2 curl file"
    echo
    exit 1
 fi
