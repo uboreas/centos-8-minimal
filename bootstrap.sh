@@ -202,7 +202,7 @@ function resolvefast() {
    if [ "${vb}" != "" ]; then
       echo "${@}" | tr " " "\n" | cmpipe "   "
    fi
-   repoquery --requires --resolve --recursive "${@}" 2>/dev/null | \
+   dnf -q repoquery --requires --resolve --recursive "${@}" 2>/dev/null | \
       awk -F":" {'print $1'} | \
       sed 's/\-[0-9]\+$//g' | \
       sort | uniq | \
@@ -216,7 +216,7 @@ function resolvedeep() {
    s="${CMSEP}-"
    tf="${CMTEMP}"
    vb="${CMVERBOSE}"
-   repoquery --requires --resolve "${@}" 2>/dev/null | \
+   dnf -q repoquery --requires --resolve "${@}" 2>/dev/null | \
       awk -F":" {'print $1'} | \
       sed 's/\-[0-9]\+$//g' | \
       sort | uniq | \
@@ -409,7 +409,7 @@ function cmrpmname() {
       echo 
       exit 1
    fi
-   repoquery "${@}" 2>/dev/null | \
+   dnf -q repoquery "${@}" 2>/dev/null | \
       sed 's/\-[0-9]\+:/\-/g' | \
       awk {'print $1".rpm"'} | \
       sort | uniq
@@ -648,7 +648,7 @@ fi
 if [ "$(cat /etc/centos-release | grep "CentOS Linux release 8")" == "" ]; then
    cmnotcentos
 fi
-if [ ! -e "/usr/bin/repoquery" -o ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/yumdownloader" -o ! -e "/usr/bin/curl" -o ! -e "/usr/bin/mkisofs" ]; then
+if [ ! -e "/usr/bin/createrepo" -o ! -e "/usr/bin/yumdownloader" -o ! -e "/usr/bin/curl" -o ! -e "/usr/bin/mkisofs" ]; then
    echo
    echo " ! Some additional packages needs to be installed."
    echo "   Please run following command to have them all:"
