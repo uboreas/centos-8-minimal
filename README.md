@@ -36,7 +36,7 @@ Hence, there are two main parts of this project:
     
 - Some additional packages needs to be installed in order to run the script. Those can be installed by using the command below:
 
-        yum -y install yum-utils createrepo syslinux genisoimage isomd5sum bzip2 curl file
+        dnf -y install createrepo_c syslinux genisoimage isomd5sum bzip2 curl file
 
 - One of the official ISO image of CentOS 8 distribution. Place it to same folder with the script.
 
@@ -157,7 +157,7 @@ Again, dowloaded RPM files will be placed into "rpms/" folder for later use (and
 
    The "method" that will be used while resolving package dependencies. You can combine it with *CMVERBOSE* for debugging purposes.
 
-   The script will use "fast" method by default. This will use system utilities to resolve dependencies (by issuing "repoquery --requires --resolve --recursive <package>") and will use what it returns as the list of packages.
+   The script will use "fast" method by default. This will use system utilities to resolve dependencies (by issuing "dnf -q repoquery --requires --resolve --recursive <package>") and will use what it returns as the list of packages.
 
    The "deep" method is a kind of custom implementation of dependency resolving process. It is really slow since it checks each package recursively with its dependencies. But, it will give an idea about the dependency resolving process and it may also useful for debugging if something went wrong.
    
