@@ -52,9 +52,8 @@ cockpit
 cockpit-machines
 cockpit-networkmanager
 cockpit-packagekit
-cockpit-storaged 
+cockpit-storaged
 openvpn
 dnf-automatic
 freeipa-client
 ipa-admintools
-libvert-dbus
