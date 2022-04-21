@@ -45,5 +45,5 @@ pip3 install --no-index --find-links="/repo/PyRepo" pip==21.3.1
 outs "Installing python modules"
 pip3 install --no-index --find-links="/repo/PyRepo" -r /root/python.modules
 
-outs "ready for reboot..."
+outs "ready for final reboot..."
 reboot
