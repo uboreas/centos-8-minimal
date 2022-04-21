@@ -1,6 +1,5 @@
 @base
-@core
-@server-product-environment
+@minimal-environment
 
 kexec-tools
 curl
@@ -36,12 +35,11 @@ json-glib-devel
 
 perl
 python3-devel
-python38
-ruby
+#python38
 ruby-devel
 mysql-devel
-nodejs
 mysql-server
+nodejs
 unzip
 docker-ce
 docker-ce-cli
@@ -54,8 +52,9 @@ cockpit
 cockpit-machines
 cockpit-networkmanager
 cockpit-packagekit
-cockpit-storaged openvpn
+cockpit-storaged 
+openvpn
 dnf-automatic
-ipa-client
 freeipa-client
 ipa-admintools
+libvert-dbus
