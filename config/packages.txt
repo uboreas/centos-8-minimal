@@ -57,3 +57,5 @@ openvpn
 dnf-automatic
 freeipa-client
 ipa-admintools
+virt-install
+telnet
