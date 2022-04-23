@@ -1,5 +1,7 @@
 @base
 @server-product-environment
+
+@virtualization
 @virtualization-hypervisor
 @virtualization-client
 @virtualization-tools
@@ -56,4 +58,3 @@ dnf-automatic
 # freeipa-client
 # ipa-admintools
 telnet
-libvirt-libs
