@@ -1,5 +1,5 @@
 @base
-@minimal-environment
+@server-product-environment
 
 kexec-tools
 curl
@@ -59,3 +59,6 @@ freeipa-client
 ipa-admintools
 virt-install
 telnet
+openstack-kolla
+python38
+ruby
