@@ -2,7 +2,6 @@
 @server-product-environment
 @virtualization-hypervisor
 @virtualization-client
-@virtualization-platform
 @virtualization-tools
 
 kexec-tools
@@ -57,4 +56,3 @@ dnf-automatic
 # freeipa-client
 # ipa-admintools
 telnet
-python3-libvirt
