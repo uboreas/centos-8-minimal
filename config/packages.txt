@@ -35,27 +35,23 @@ json-glib-devel
 
 perl
 python3-devel
-ruby-devel
 mysql-devel
 mysql-server
-nodejs
 unzip
 docker-ce
 docker-ce-cli
 containerd.io
 tar
-httpd
 epel-release
 yum-utils
 cockpit
-cockpit-machines
+# cockpit-machines
 cockpit-networkmanager
 cockpit-packagekit
-cockpit-storaged
-openvpn
+# cockpit-storaged
+# openvpn
 dnf-automatic
-freeipa-client
-ipa-admintools
+# freeipa-client
+# ipa-admintools
 virt-install
 telnet
-ruby
