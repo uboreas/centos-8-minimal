@@ -35,7 +35,6 @@ json-glib-devel
 
 perl
 python3-devel
-#python38
 ruby-devel
 mysql-devel
 mysql-server
@@ -59,6 +58,4 @@ freeipa-client
 ipa-admintools
 virt-install
 telnet
-openstack-kolla
-python38
 ruby
