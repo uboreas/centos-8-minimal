@@ -57,3 +57,4 @@ dnf-automatic
 # freeipa-client
 # ipa-admintools
 telnet
+python3-libvirt
