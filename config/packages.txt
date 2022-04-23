@@ -56,3 +56,4 @@ dnf-automatic
 # freeipa-client
 # ipa-admintools
 telnet
+libvirt-libs
