@@ -33,7 +33,6 @@ net-tools
 libseccomp-devel
 json-glib-devel
 
-perl
 python3-devel
 mysql-devel
 mysql-server
@@ -54,4 +53,5 @@ dnf-automatic
 # freeipa-client
 # ipa-admintools
 virt-install
+libvirt-client
 telnet
