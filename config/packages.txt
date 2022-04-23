@@ -1,5 +1,9 @@
 @base
 @server-product-environment
+@virtualization-hypervisor
+@virtualization-client
+@virtualization-platform
+@virtualization-tools
 
 kexec-tools
 curl
@@ -52,6 +56,4 @@ cockpit-packagekit
 dnf-automatic
 # freeipa-client
 # ipa-admintools
-virt-install
-libvirt-client
 telnet
