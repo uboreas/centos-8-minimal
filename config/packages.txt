@@ -58,3 +58,6 @@ dnf-automatic
 # freeipa-client
 # ipa-admintools
 telnet
+
+which
+python3
