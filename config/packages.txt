@@ -1,11 +1,6 @@
 @base
 @server-product-environment
 
-# @virtualization
-# @virtualization-hypervisor
-# @virtualization-client
-# @virtualization-tools
-
 kexec-tools
 curl
 
