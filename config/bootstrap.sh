@@ -255,6 +255,7 @@ function cmcopyrpmtorepo() {
 
 function cmcollectrpms() {
    echo " ${COLOR_GREEN}~ Collecting RPMs for package(s)${RESET}"
+   dnf module enable idm:DL1 virt -y
    if [ "${CMVERBOSE}" == "" ]; then
       echo -n "   "
    fi
@@ -262,7 +263,7 @@ function cmcollectrpms() {
    mkdir -p rpms
    
    [ -d "rpms.cache" ] && cp rpms.cache/* rpms/ || true
-   dnf module enable idm:DL1 virt -y
+
    dnf groupinstall --downloadonly -y --nobest --releasever=8 --installroot=${dnir} --destdir=${dnddr} $(grep "^@" packages.txt | sed "s/^@//") -x \*i686 $(grep "^-" packages.txt | sed "s/^-/-x /") 
    dnf download --arch=noarch,x86_64 --releasever=8 --installroot=${dnir} --resolve --alldeps --destdir=${dnddr} $(grep -v "^#" packages.txt | grep -v "^@" | grep -v "^-") -x \*i686
 
