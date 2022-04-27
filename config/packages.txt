@@ -50,8 +50,6 @@ cockpit-packagekit
 cockpit-storaged
 openvpn
 dnf-automatic
-freeipa-client
-ipa-admintools
 telnet
 
 which
@@ -75,12 +73,7 @@ telnet
 httpd
 openvpn
 
-cyrus-sasl-devel
-libtool-ltdl-devel
-libdb-devel
-perl
-perl-devel
-vim
-rsyslog
 ipa-server
 ipa-server-dns
+freeipa-client
+ipa-admintools
