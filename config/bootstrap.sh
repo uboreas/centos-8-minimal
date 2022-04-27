@@ -256,6 +256,7 @@ function cmcopyrpmtorepo() {
 function cmcollectrpms() {
    echo " ${COLOR_GREEN}~ Collecting RPMs for package(s)${RESET}"
    dnf module enable idm:DL1 virt -y
+   dnf distro-sync
    if [ "${CMVERBOSE}" == "" ]; then
       echo -n "   "
    fi
