@@ -49,14 +49,14 @@ tar
 epel-release
 yum-utils
 cockpit
-# cockpit-machines
+cockpit-machines
 cockpit-networkmanager
 cockpit-packagekit
-# cockpit-storaged
-# openvpn
+cockpit-storaged
+openvpn
 dnf-automatic
-# freeipa-client
-# ipa-admintools
+freeipa-client
+ipa-admintools
 telnet
 
 which

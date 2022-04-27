@@ -45,5 +45,9 @@ pip3 install --no-index --find-links="/repo/PyRepo" pip==21.3.1
 outs "Installing python modules"
 pip3 install --no-index --find-links="/repo/PyRepo" -r /root/python.modules
 
+echo "Installing rest of the packages"
+dnf clean all && dnf update -y
+dnf install -y openvpn
+
 outs "ready for final reboot..."
 reboot
