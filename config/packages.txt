@@ -73,7 +73,7 @@ telnet
 httpd
 openvpn
 
-ipa-server
-ipa-server-dns
-freeipa-client
-ipa-admintools
+#ipa-server
+#ipa-server-dns
+#freeipa-client
+#ipa-admintools
