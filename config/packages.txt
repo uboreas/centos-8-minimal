@@ -55,7 +55,6 @@ ipa-admintools
 telnet
 
 which
-python3
 
 libffi-devel
 chrony
@@ -66,3 +65,22 @@ libxslt-devel
 libxml2-devel
 patch
 openssl
+
+
+virt-install
+virt-viewer
+swtpm
+libtpms
+telnet
+httpd
+openvpn
+
+cyrus-sasl-devel
+libtool-ltdl-devel
+libdb-devel
+perl
+perl-devel
+vim
+rsyslog
+ipa-server
+ipa-server-dns
