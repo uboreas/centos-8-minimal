@@ -69,7 +69,6 @@ virt-install
 virt-viewer
 swtpm
 libtpms
-telnet
 httpd
 openvpn
 
