@@ -1,10 +1,13 @@
 @base
-@virtualization-host
+@virtualization-host-environment
 
 @virtualization-platform --with-optional
 @virtualization-tools --with-optional
 @virtualization-client --with-optional
 @virtualization-hypervisor  --with-optional
+
+@idm:DL1/dns
+@virt
 
 kexec-tools
 curl
