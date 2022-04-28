@@ -63,7 +63,7 @@ libxslt-devel
 libxml2-devel
 patch
 openssl
-
+container-selinux
 
 virt-install
 virt-viewer
