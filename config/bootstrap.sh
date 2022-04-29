@@ -263,8 +263,8 @@ function cmcollectrpms() {
    
    [ -d "rpms.cache" ] && cp rpms.cache/* rpms/ || true
    
-   dnf groupinstall --downloadonly -y --nobest --releasever=8 --installroot=${dnir} --destdir=${dnddr} $(grep "^@" packages.txt | sed "s/^@//") -x \*i686 $(grep "^-" packages.txt | sed "s/^-/-x /") 
-   dnf download --arch=noarch,x86_64 --releasever=8 --installroot=${dnir} --resolve --alldeps --destdir=${dnddr} $(grep -v "^#" packages.txt | grep -v "^@" | grep -v "^-") -x \*i686
+   dnf groupinstall --downloadonly -y --nobest --nodocs --releasever=8 --installroot=${dnir} --destdir=${dnddr} $(grep "^@" packages.txt | sed "s/^@//") -x \*i686 $(grep "^-" packages.txt | sed "s/^-/-x /") 
+   dnf download --arch=noarch,x86_64 --nodocs --releasever=8 --installroot=${dnir} --resolve --alldeps --destdir=${dnddr} $(grep -v "^#" packages.txt | grep -v "^@" | grep -v "^-") -x \*i686
 
    echo "$(ls rpms | sort | uniq)" | while read r; do
       if [ -e "rpms/${r}" ]; then

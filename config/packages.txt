@@ -1,10 +1,5 @@
 @base
-@server-product-environment
-
-# @virtualization
-# @virtualization-hypervisor
-# @virtualization-client
-# @virtualization-tools
+@virtualization-host-environment
 
 kexec-tools
 curl
@@ -71,3 +66,6 @@ libxslt-devel
 libxml2-devel
 patch
 openssl
+
+freeipa-server
+freeipa-server-dns
