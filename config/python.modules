@@ -1,5 +1,4 @@
-tzupdate
-python-openstackclient --trusted-host pypi.org --trusted-host files.pythonhosted.org 
+python-openstackclient --trusted-host pypi.org --trusted-host files.pythonhosted.org
 python-octaviaclient --trusted-host pypi.org --trusted-host files.pythonhosted.org 
 python-troveclient --trusted-host pypi.org --trusted-host files.pythonhosted.org 
 python-magnumclient --trusted-host pypi.org --trusted-host files.pythonhosted.org 
