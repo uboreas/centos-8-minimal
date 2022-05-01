@@ -5,4 +5,8 @@ python-magnumclient --trusted-host pypi.org --trusted-host files.pythonhosted.or
 python-swiftclient --trusted-host pypi.org --trusted-host files.pythonhosted.org 
 twisted --trusted-host pypi.org --trusted-host files.pythonhosted.org
 selinux --trusted-host pypi.org --trusted-host files.pythonhosted.org
-cmd2 
+kolla-ansible --trusted-host pypi.org --trusted-host files.pythonhosted.org
+ansible==2.10 --trusted-host pypi.org --trusted-host files.pythonhosted.org
+cmd2
+virtualenv
+pip
