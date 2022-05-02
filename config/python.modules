@@ -10,3 +10,5 @@ ansible==2.10 --trusted-host pypi.org --trusted-host files.pythonhosted.org
 cmd2
 virtualenv
 pip
+pytest
+argparse-manpage
