@@ -1,8 +1,5 @@
 #!/bin/bash -e
 
-echo "Move to CentOS Stream 8 repo"
-dnf --disablerepo '*' --enablerepo extras swap centos-linux-repos centos-stream-repos -y && dnf distro-sync -y
-
 echo "Update repo data and install required softwares"
 dnf module enable idm:DL1 -y && \
   dnf update -y && \
