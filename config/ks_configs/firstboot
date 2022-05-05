@@ -46,8 +46,14 @@ outs "Installing python modules"
 pip3 install --no-index --find-links="/repo/PyRepo" -r /root/python.modules
 
 echo "Installing rest of the packages"
-dnf clean all && dnf update -y
+dnf clean all 
+dnf module enable idm:DL1 -y
+dnf distro-sync -y
+dnf reposync 
+dnf update -y
+
 dnf install -y openvpn
+dnf install -y freeipa-server freeipa-server-dns
 
 outs "ready for final reboot..."
 reboot
