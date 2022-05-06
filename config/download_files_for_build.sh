@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 echo "Update repo data and install required softwares"
-dnf module enable idm:DL1 -y && \
+dnf module enable idm:DL1 virt -y && dnf distro-sync -y
   dnf update -y && \
   dnf install -y yum-utils \
                  createrepo \

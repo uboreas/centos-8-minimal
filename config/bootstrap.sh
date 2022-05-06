@@ -255,6 +255,7 @@ function cmcopyrpmtorepo() {
 
 function cmcollectrpms() {
    echo " ${COLOR_GREEN}~ Collecting RPMs for package(s)${RESET}"
+
    if [ "${CMVERBOSE}" == "" ]; then
       echo -n "   "
    fi

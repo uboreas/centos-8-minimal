@@ -50,12 +50,9 @@ cockpit-packagekit
 cockpit-storaged
 openvpn
 dnf-automatic
-freeipa-client
-ipa-admintools
 telnet
 
 which
-python3
 
 libffi-devel
 chrony
@@ -66,6 +63,14 @@ libxslt-devel
 libxml2-devel
 patch
 openssl
+virt-viewer
+nodejs
+cyrus-sasl-devel
+libtool-ltdl-devel
+libdb-devel
+ruby-devel
+perl-devel
 
 freeipa-server
 freeipa-server-dns
+freeipa-client
