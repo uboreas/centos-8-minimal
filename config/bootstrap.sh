@@ -288,7 +288,7 @@ function cmcollectpymodules() {
 
    [ ! -d ${pmd} ] && mkdir -p ${pmd}
 
-   pip3 download -d ./ptemp/ pip==22.0.4
+   pip3 download -d ./ptemp/ pip==21.3.1 
    pip3 download -d ${pmd} -r ${pm}
 }
 

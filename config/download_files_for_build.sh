@@ -17,7 +17,7 @@ dnf module enable idm:DL1 -y && \
                  unzip \
                  python3-pip
 
-PIP_VERSION="22.0.4"
+PIP_VERSION="21.3.1"
 echo "Update pip to ${PIP_VERSION}"
 python3 -m pip install --upgrade pip==${PIP_VERSION}
 
