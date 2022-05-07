@@ -38,7 +38,7 @@ sleep 10
 outs "installing python modules"
 
 # update pip to required version
-outs "Upgrade pip to v21.3.1"
+outs "Upgrade pip to latest version"
 pip3 install --no-index --find-links="/repo/PyRepo" pip==21.3.1 
 
 # install rest of the python modules
@@ -46,8 +46,15 @@ outs "Installing python modules"
 pip3 install --no-index --find-links="/repo/PyRepo" -r /root/python.modules
 
 echo "Installing rest of the packages"
-dnf clean all && dnf update -y
-dnf install -y openvpn
+dnf clean all 
+dnf module enable idm:DL1 -y
+dnf distro-sync -y
+dnf reposync 
+dnf update -y
+
+dnf groupinstall -y virtualization-client 
+dnf install -y openvpn ruby-devel nodejs
+dnf install -y freeipa-server freeipa-server-dns
 
 outs "ready for final reboot..."
 reboot

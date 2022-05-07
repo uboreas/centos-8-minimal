@@ -1,4 +1,4 @@
-FROM centos:8
+FROM quay.io/centos/centos:stream8
 
 ENV TERM xterm-256color
 ENV USERHOME=/root

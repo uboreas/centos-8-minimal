@@ -74,11 +74,9 @@ nodejs
 cyrus-sasl-devel
 libtool-ltdl-devel
 libdb-devel
-perl-devel
-vim
-rsyslog
-ipa-server
-ipa-server-dns
-qemu-kvm
-ruby
 ruby-devel
+redhat-rpm-config
+perl-devel
+freeipa-server
+freeipa-server-dns
+freeipa-client
