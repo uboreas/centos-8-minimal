@@ -1,5 +1,6 @@
 @base
 @virtualization-host-environment
+@virtualization-client
 
 kexec-tools
 curl
@@ -51,9 +52,7 @@ cockpit-storaged
 openvpn
 dnf-automatic
 telnet
-
 which
-
 libffi-devel
 chrony
 postgresql-devel
@@ -63,12 +62,12 @@ libxslt-devel
 libxml2-devel
 patch
 openssl
-virt-viewer
 nodejs
 cyrus-sasl-devel
 libtool-ltdl-devel
 libdb-devel
 ruby-devel
+redhat-rpm-config
 perl-devel
 
 freeipa-server

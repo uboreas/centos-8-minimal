@@ -38,8 +38,8 @@ sleep 10
 outs "installing python modules"
 
 # update pip to required version
-outs "Upgrade pip to v21.3.1"
-pip3 install --no-index --find-links="/repo/PyRepo" pip==21.3.1 
+outs "Upgrade pip to latest version"
+pip3 install --no-index --find-links="/repo/PyRepo" pip==22.0.4 
 
 # install rest of the python modules
 outs "Installing python modules"
@@ -52,7 +52,8 @@ dnf distro-sync -y
 dnf reposync 
 dnf update -y
 
-dnf install -y openvpn
+dnf groupinstall -y virtualization-client 
+dnf install -y openvpn ruby-devel nodejs
 dnf install -y freeipa-server freeipa-server-dns
 
 outs "ready for final reboot..."

@@ -1,7 +1,8 @@
 #!/bin/bash -e
 
 echo "Update repo data and install required softwares"
-dnf module enable idm:DL1 virt -y && dnf distro-sync -y
+dnf module enable idm:DL1 -y && \
+  dnf distro-sync -y && \
   dnf update -y && \
   dnf install -y yum-utils \
                  createrepo \
@@ -16,7 +17,7 @@ dnf module enable idm:DL1 virt -y && dnf distro-sync -y
                  unzip \
                  python3-pip
 
-PIP_VERSION="21.3.1"
+PIP_VERSION="22.0.4"
 echo "Update pip to ${PIP_VERSION}"
 python3 -m pip install --upgrade pip==${PIP_VERSION}
 
