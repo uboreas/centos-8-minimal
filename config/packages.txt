@@ -1,17 +1,16 @@
 @base
 @virtualization-host-environment
-@virtualization-client
-
+@virtualization-platform --with-optional
+@virtualization-tools --with-optional
+@virtualization-client --with-optional
+@virtualization-hypervisor --with-optional
 kexec-tools
 curl
-
 grub2
-
 open-vm-tools
 python3-pip
 python3-setuptools
 python3-cryptography
-
 diffutils
 make
 file
@@ -33,7 +32,6 @@ gnutls-utils
 net-tools
 libseccomp-devel
 json-glib-devel
-
 python3-devel
 mysql-devel
 mysql-server
@@ -62,6 +60,16 @@ libxslt-devel
 libxml2-devel
 patch
 openssl
+container-selinux
+virt-install
+virt-viewer
+swtpm
+libtpms
+httpd
+ipa-client
+freeipa-client
+ipa-admintools
+perl
 nodejs
 cyrus-sasl-devel
 libtool-ltdl-devel
@@ -69,7 +77,6 @@ libdb-devel
 ruby-devel
 redhat-rpm-config
 perl-devel
-
 freeipa-server
 freeipa-server-dns
 freeipa-client
