@@ -11,4 +11,5 @@ cmd2
 virtualenv
 pip
 pytest
+wheel
 argparse-manpage
