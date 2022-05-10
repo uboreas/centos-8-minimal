@@ -72,7 +72,7 @@ annobin
 redhat-rpm-config
 perl
 perl-devel
-
+acpid
 freeipa-server
 freeipa-server-dns
 freeipa-client
