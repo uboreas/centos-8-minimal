@@ -80,3 +80,4 @@ perl-devel
 freeipa-server
 freeipa-server-dns
 freeipa-client
+drpm
